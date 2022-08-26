@@ -1,6 +1,10 @@
-------------------------------------------------------------
-PREPARANDO O AMBIENTE
-------------------------------------------------------------
+Desafio
+=========
+- https://github.com/juntossomosmais/code-challenge
+
+
+Preparação do ambiente
+----------------------
 
 - Linux
 ```
@@ -19,8 +23,7 @@ pipenv install django
 pipenv install djangorestframework
 pipenv shell
 ```
-------------------------------------------------------------
-CRIANDO PROJETO E DEFININDO SUPERUSER
+Criando o Projeto e Definindo 'superuser'
 ------------------------------------------------------------
 ```
 django-admin startproject jsmchalange .
@@ -28,7 +31,7 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 ------------------------------------------------------------
-PASSOS
+Passos
 ------------------------------------------------------------
 
 1) incluir linhas 40 e 41 no arquivo /jsmchalange/settings.py
@@ -41,14 +44,19 @@ PASSOS
 8) criar arquivo /api/__init__.py
 
 ------------------------------------------------------------
-EXECUTANDO
+Executando
 ------------------------------------------------------------
 
 ```
 python manage.py runserver
 ```
 ------------------------------------------------------------
-ACESSANDO A API
+Acessando a API
 ------------------------------------------------------------
-a) http://127.0.0.1:8000/clientes
-b) http://127.0.0.1:8000/clientes?type=especial
+* http://127.0.0.1:8000/clientes
+
+    Retorna todos os clientes (2000)
+
+* http://127.0.0.1:8000/clientes?type=especial
+
+    Retorna apenas os clientes cujo tipo foi especificado em **'type'**
