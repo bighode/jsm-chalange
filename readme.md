@@ -39,3 +39,16 @@ PASSOS
 6) criar arquivo /api/jsmcsv.py
 7) criar arquivo /api/jsmjson.py
 8) criar arquivo /api/__init__.py
+
+------------------------------------------------------------
+EXECUTANDO
+------------------------------------------------------------
+
+```
+python manage.py runserver
+```
+------------------------------------------------------------
+ACESSANDO A API
+------------------------------------------------------------
+a) http://127.0.0.1:8000/clientes
+b) http://127.0.0.1:8000/clientes?type=especial
