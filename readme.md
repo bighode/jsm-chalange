@@ -1,7 +1,12 @@
-Desafio
-=========
+Solução para o Desafio
+======================
 - https://github.com/juntossomosmais/code-challenge
 
+Tecnologias Adotadas
+--------------------
+* Python
+* Django
+* djangorestframework
 
 Preparação do ambiente
 ----------------------
