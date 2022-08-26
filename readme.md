@@ -4,20 +4,20 @@ PREPARANDO O AMBIENTE
 
 - Linux
 
-    * mkdir jsm-chalange
-    * cd jsm-chalange
-    * virtualenv venv
-    * source venv/bin/activate
-    * pip install django
-    * pip install djangorestframework
+mkdir jsm-chalange
+cd jsm-chalange
+virtualenv venv
+source venv/bin/activate
+pip install django
+pip install djangorestframework
 
 - Windows
 
-    * md jsm-chalange
-    * cd jsm-chalange
-    * pipenv install django
-    * pipenv install djangorestframework
-    * pipenv shell
+md jsm-chalange
+cd jsm-chalange
+pipenv install django
+pipenv install djangorestframework
+pipenv shell
 
 ------------------------------------------------------------
 CRIANDO PROJETO E DEFININDO SUPERUSER
