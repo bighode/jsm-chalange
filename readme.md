@@ -61,12 +61,11 @@ Acessando a API
     Retorna todos os clientes do tipo 'trabalhoso' e região Centro-Oeste
 
 - Parâmetros Obrigatórios:
-    **type**: pode ser trabalhoso, normal ou especial.
-    **region**: pode ser Centro-Oeste, Nordeste, Norte, Sudeste ou Sul
+    - **type**: pode ser trabalhoso, normal ou especial.
+    - **region**: pode ser Centro-Oeste, Nordeste, Norte, Sudeste ou Sul
 
 - Parâmetros Opcionais:
-
-    **pageSize**: quantidade de itens por página
-    **pageNumber**: número da página a ser exibida
+    - **pageSize**: quantidade de itens por página
+    - **pageNumber**: número da página a ser exibida
 
 
