@@ -56,10 +56,6 @@ python manage.py runserver
 Acessando a API
 ------------------------------------------------------------
 
-- GET: http://127.0.0.1:8000/clientes?type=trabalhoso&region=Centro-Oeste
-
-    Retorna todos os clientes do tipo 'trabalhoso' e região Centro-Oeste
-
 - Parâmetros Obrigatórios:
     - **type**: pode ser trabalhoso, normal ou especial.
     - **region**: pode ser Centro-Oeste, Nordeste, Norte, Sudeste ou Sul
@@ -68,4 +64,14 @@ Acessando a API
     - **pageSize**: quantidade de itens por página
     - **pageNumber**: número da página a ser exibida
 
+- Exemplos:    
+
+    - GET: http://127.0.0.1:8000/clientes?type=trabalhoso&region=Centro-Oeste
+
+        Retorna todos os clientes do tipo 'trabalhoso' e da região 'Centro-Oeste'
+
+    - GET: http://127.0.0.1:8000/clientes?type=trabalhoso&region=Centro-Oeste&pageNumber=2&pageSize=5
+        
+        Exibe 5 registros por página, iniciando pela página 2:
+        
 
