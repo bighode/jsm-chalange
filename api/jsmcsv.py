@@ -46,6 +46,7 @@ def parse_csv():
 
             #  others
             new_client['type'] = jsmutil.get_type(coordinates['latitude'], coordinates['longitude'])
+            new_client['region'] = jsmutil.get_region(cliente['location__state'])
             new_client['gender'] = cliente['gender']
             new_client['email'] = cliente['email']
             new_client['birthday'] = cliente['dob__date']

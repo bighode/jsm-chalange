@@ -20,6 +20,9 @@ def parse_json():
         lat = cliente['location']['coordinates']['latitude']
         cliente['type'] = jsmutil.get_type(lon, lat)
 
+        # region
+        cliente['region'] = jsmutil.get_region(cliente['location']['state'])
+
         # gender
         cliente['gender'] = jsmutil.abreviate_gender(cliente['gender'])
 

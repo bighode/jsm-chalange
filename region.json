@@ -1,0 +1,22 @@
+[
+    {
+        "states": ["distrito federal","goiás","mato grosso","mato grosso do sul"],
+        "name": "Centro-Oeste"
+    },
+    {
+        "states": ["alagoas","bahia","ceará","maranhão","paraíba","pernambuco","piauí","rio grande do norte","sergipe"],
+        "name": "Nordeste"
+    },
+    {
+        "states": ["acre","amapá","amazonas","pará","rondônia","roraima","tocantins"],
+        "name": "Norte"
+    },
+    {
+        "states": ["espírito santo","minas gerais","rio de janeiro","são paulo"],
+        "name": "Sudeste"
+    },
+    {
+        "states": ["paraná","rio grande do sul","santa catarina"],
+        "name": "Sul"
+    }
+]    

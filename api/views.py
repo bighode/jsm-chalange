@@ -1,6 +1,5 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from django.core.serializers import serialize
 
 from . import jsmutil
                
@@ -23,21 +22,27 @@ def getClientes(request):
     # lê arquivo json
     db = jsmutil.open_json('db.json')
 
-    # # se não tem registros, adianta o lado
-    # if not db:
-    #     return Response(db)
-
-    # se não informou parametro 'type', retorna todos os clientes 
-    clientes = db
+    # se não informou parametro 'type', retorna erro
     if ('type' in params):
-        if params['type'] in ['especial', 'normal', 'trabalhoso']:
-            clientes = [c for c in db if c['type'] == params['type']]
-        else:
-            return Response(getError('type'))       
+        if not (params['type'] in ['especial', 'normal', 'trabalhoso']):
+            return Response(getError('type')) 
+    else:
+        return Response(getError('type')) 
+
+    #  se não informou parâmetro 'region' retorna erro
+    if ('region' in params):
+        if not (params['region'] in ['Centro-Oeste','Nordeste', 'Norte', 'Sudeste', 'Sul']):
+            return Response(getError('region'))
+    else:
+        return Response(getError('region'))
+    
+    #  filtra bd
+    clientes = [c for c in db if (c['type'] == params['type'] and c['region'] == params['region'])]
     
     #  calcula o número de páginas
     totalCount = getTotalCount(10, len(clientes))
-
+    
+    # Além da lista dos usuários elegíveis, para permitir navegação entre os registros, deve ser implementado os seguintes metadados de paginação:
     # cria este dicionário (response)
     res =  {
         'pageNumber': 1,
@@ -47,7 +52,6 @@ def getClientes(request):
     }
 
     # pageSize deve ser um número inteiro maior que zero 
-    # e menor ou igual ao total de páginas
     if ('pageSize' in params):
         try:
             ps = int(params['pageSize'])
@@ -62,7 +66,6 @@ def getClientes(request):
         except:
             return Response(getError('pageSize'))
 
-
     # pageNumber deve ser maior que zero
     # pageNumber deve ser menor ou igual ao total de registros
     if ('pageNumber' in params):
@@ -75,16 +78,10 @@ def getClientes(request):
         except:
             return Response(getError('pageNumber'))
     
-    #  define inicio e fim da paginação
-    print('pageNumber: ', res['pageNumber'])
-    print('pageSize: ', res['pageSize'])
-
     start_reg = (res['pageNumber'] - 1) * res['pageSize']    
     end_reg = (res['pageSize'] * res['pageNumber'])
-  
-    print('start_reg: ', start_reg)
-    print('end_reg', end_reg)
-
+    
+    #  pagina
     res['users'] = clientes[start_reg : end_reg]
 
     # response
