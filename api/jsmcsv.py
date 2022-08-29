@@ -22,6 +22,8 @@ def parse_csv():
     # 1) baixa o arquivo csv e salva em csvfile
     csvfile = get_csvfile()
 
+    mail_list = jsmutil.open_json('mail_list.json')
+
     # cria um dicionario vazio
     client_list = []        
     
@@ -31,68 +33,65 @@ def parse_csv():
         # corrige caracter inválido na chave gender
         cliente = adjust_gender_key(row)
 
-        # cria um dicionário vazio
-        new_client = dict()
+        if not cliente['email'] in mail_list:
 
-        #  coordinates
-        coordinates = {
-            'latitude': cliente['location__coordinates__latitude'],
-            'longitude': cliente['location__coordinates__longitude']
-        }
+            # cria um dicionário vazio
+            new_client = dict()
 
-        #  others
-        new_client['type'] = jsmutil.get_type(coordinates['latitude'], coordinates['longitude'])
-        new_client['gender'] = cliente['gender']
-        new_client['email'] = cliente['email']
-        new_client['birthday'] = cliente['dob__date']
-        new_client['registered'] = cliente['registered__date']
+            #  coordinates
+            coordinates = {
+                'latitude': cliente['location__coordinates__latitude'],
+                'longitude': cliente['location__coordinates__longitude']
+            }
 
-        # nationality
-        if not 'nationality' in cliente:
-            new_client['nationality'] = 'BR'
-        
-        #  name
-        name = {
-            'title': cliente['name__title'],
-            'first': cliente['name__first'],
-            'last': cliente['name__last']
-        }
-        new_client['name'] = name
+            #  others
+            new_client['type'] = jsmutil.get_type(coordinates['latitude'], coordinates['longitude'])
+            new_client['gender'] = cliente['gender']
+            new_client['email'] = cliente['email']
+            new_client['birthday'] = cliente['dob__date']
+            new_client['registered'] = cliente['registered__date']
 
-        #  location
-        location = {
-            'street': cliente['location__street'],
-            'city': cliente['location__city'],
-            'state': cliente['location__state'],
-            'postcode': int(cliente['location__postcode']),
-            'cordinates': coordinates,
-        }
-        new_client['location'] = location
+            # nationality
+            if not 'nationality' in cliente:
+                new_client['nationality'] = 'BR'
+            
+            #  name
+            name = {
+                'title': cliente['name__title'],
+                'first': cliente['name__first'],
+                'last': cliente['name__last']
+            }
+            new_client['name'] = name
 
-        #  timezone
-        timezone = {
-            'offset': cliente['location__timezone__offset'],
-            'description': cliente['location__timezone__description'],
-        }
-        new_client['timezone'] = timezone 
-        
-        # phones
-        new_client['telephoneNumbers'] = [jsmutil.parse_phone(cliente['phone'], new_client['nationality'])]
-        new_client['mobileNumbers'] = [jsmutil.parse_phone(cliente['cell'], new_client['nationality'])]
+            #  location
+            location = {
+                'street': cliente['location__street'],
+                'city': cliente['location__city'],
+                'state': cliente['location__state'],
+                'postcode': int(cliente['location__postcode']),
+                'cordinates': coordinates,
+            }
+            new_client['location'] = location
 
-        # picture
-        picture = {
-            'large': cliente['picture__large'],
-            'medium': cliente['picture__medium'],
-            'thumbnail': cliente['picture__thumbnail']
-        }
-        new_client['picture'] = picture
-                
-        client_list.append(new_client)
+            #  timezone
+            timezone = {
+                'offset': cliente['location__timezone__offset'],
+                'description': cliente['location__timezone__description'],
+            }
+            new_client['timezone'] = timezone 
+            
+            # phones
+            new_client['telephoneNumbers'] = [jsmutil.parse_phone(cliente['phone'], new_client['nationality'])]
+            new_client['mobileNumbers'] = [jsmutil.parse_phone(cliente['cell'], new_client['nationality'])]
 
-    return client_list  
+            # picture
+            picture = {
+                'large': cliente['picture__large'],
+                'medium': cliente['picture__medium'],
+                'thumbnail': cliente['picture__thumbnail']
+            }
+            new_client['picture'] = picture
+                    
+            client_list.append(new_client)
 
-# retorna lista de clientes em formato
-def get_clientes():
-    csv_list = parse_csv()
-    return csv_list
+    return client_list

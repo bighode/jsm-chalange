@@ -7,9 +7,12 @@ def get_jsonfile():
         data = json.loads(url.read().decode())
     return data
 
-def get_clientes():
+def parse_json():
     
     clientes = get_jsonfile()
+
+    mail_list = []
+
     for cliente in clientes['results']:
         
         #  type
@@ -43,6 +46,12 @@ def get_clientes():
         cliente['mobileNumbers'] = [
             jsmutil.parse_phone(cliente['cell'], cliente['nationality'])
         ]
-        del(cliente['cell'])        
+        del(cliente['cell']) 
+
+        #  cria lista de email
+        mail_list.append(cliente['email'])
+    
+    # salva lista de emails
+    jsmutil.save_json(mail_list, 'mail_list.json')
 
     return clientes['results']

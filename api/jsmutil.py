@@ -1,7 +1,7 @@
 import json, re
 
 def save_json(json_content, filename):
-    with open(filename, 'w') as json_file:
+    with open(filename, 'w+') as json_file:
         json.dump(json_content, json_file)
 
 def open_json(filename):

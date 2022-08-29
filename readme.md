@@ -65,3 +65,9 @@ Acessando a API
 * http://127.0.0.1:8000/clientes?type=especial
 
     Retorna apenas os clientes cujo tipo foi especificado em **'type'**
+
+* http://127.0.0.1:8000/clientes?pageNumber=1
+
+* http://127.0.0.1:8000/clientes?pageSize=10
+
+* http://127.0.0.1:8000/clientes?pageNumber=1&pageSize=10&type=especial
