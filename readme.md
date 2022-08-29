@@ -58,16 +58,20 @@ python manage.py runserver
 ------------------------------------------------------------
 Acessando a API
 ------------------------------------------------------------
-* http://127.0.0.1:8000/clientes
 
-    Retorna todos os clientes (2000)
+- GET: http://127.0.0.1:8000/clientes?type=trabalhoso&region=Centro-Oeste
 
-* http://127.0.0.1:8000/clientes?type=especial
+    Retorna todos os clientes do tipo 'trabalhoso' e região Centro-Oeste
 
-    Retorna apenas os clientes cujo tipo foi especificado em **'type'**
+- Parâmetros Obrigatórios:
+-----------------------
+    * **type**: pode ser trabalhoso, normal ou especial.
+    * **region**: pode ser Centro-Oeste, Nordeste, Norte, Sudeste ou Sul
 
-* http://127.0.0.1:8000/clientes?pageNumber=1
+- Parâmetros Opcionais:
+-----------------------
 
-* http://127.0.0.1:8000/clientes?pageSize=10
+    * **pageSize**: quantidade de itens por página
+    * **pageNumber**: número da página a ser exibida
 
-* http://127.0.0.1:8000/clientes?pageNumber=1&pageSize=10&type=especial
+
